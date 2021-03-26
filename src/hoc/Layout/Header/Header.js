@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = props => {
     return (
-        <h2>{props.children}</h2>
+        <h2>THIS IS ACTUALLY HEADER</h2>
     );
 };
 

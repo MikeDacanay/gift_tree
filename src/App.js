@@ -1,29 +1,31 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
 import Header from './hoc/Layout/Header/Header';
 import Main from './hoc/Layout/Main/Main';
+import Footer from './hoc/Layout/Footer/Footer';
 
-import Section from './components/Section/Section';
+import Bubbles from './containers/nonHierarchal/Bubbles/Bubbles';
 
 import './App.scss';
 
-function App() {
+const App = props => {
   return (    
     <React.Fragment>  
       <Header>
-        This header
+        This is Important
       </Header>
       <Main>
-        <Section></Section>
-        <Section></Section>
+        <Bubbles/>
       </Main>
-      <Header>This is header 2</Header>
-      <Main>
-        <Section></Section>
-        <Section></Section>
-      </Main>
+      <Footer/>
     </React.Fragment> 
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    bestScoreObj: state.nonHierarchalReducer.bestScore,
+  };
+}
+
+export default connect(mapStateToProps, null)(App);
