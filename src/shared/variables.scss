@@ -1,0 +1,90 @@
+$spacer_top: 3.1rem;
+
+$color-w: #fff;
+$color-t: transparent;
+$color-1: #375d61;
+$color-2: #f0cc71;
+$color-3: #161513;
+$color-4: #233b3f;
+$color-5: #bcd5d5;
+$color-6: #76a2a0;
+$color-7: #312D2A;
+$color-8: #F1EFED;
+$timing1: 1000;
+
+@font-face {
+    font-family: "OracleReg";
+    src: url("/assets/fonts/OracleSans_Rg.ttf");
+}
+
+@font-face {
+    font-family: "OracleLite";
+    src: url("/assets/fonts/OracleSans_Lt.ttf");
+    font-weight: normal;
+}
+@font-face {
+    font-family: "OracleB";
+    src: url("/assets/fonts/OracleSans_SBd.ttf");
+    font-weight: normal;
+}
+@font-face {
+    font-family: "OracleB1";
+    src: url("/assets/fonts/OracleSansCd_Bd.ttf");
+    font-weight: normal;
+}
+@font-face {
+    font-family: "RWIcons";
+    src: url("/assets/fonts/Redwoodicons-v4.ttf");
+    font-weight: normal;
+}
+@font-face {
+    font-family: "GG";
+    src: url("/assets/fonts/Georgia.ttf");
+    font-weight: normal;
+}
+
+$font-reg: OracleReg, Arial, Helvetica, sans-serif;
+$font-b: OracleB, Arial, Helvetica, sans-serif;
+$font-b1: OracleB1, Arial, Helvetica, sans-serif; 
+$font-i1: RWIcons;
+$font-gg: GG, Arial, Helvetica, sans-serif;
+
+@mixin normal_txt {
+    font-family: $font-reg;
+    font-size: 1rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-align: left;
+    color: $color-w;
+}
+
+@mixin nav1_txt {
+    font-family: $font-b;
+    font-size: 0.85rem;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: $color-w;
+    margin-bottom: 0.2rem;
+}
+
+@mixin bp($point) {
+    @media only screen and (max-width: $point+px) {
+        @content;
+    }
+}
+@mixin bph($point) {
+    @media only screen and (max-height: $point+px) {
+        @content;
+    }
+}
+
+:export {
+    timing1: $timing1;    
+}

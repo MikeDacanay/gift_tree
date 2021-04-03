@@ -22,10 +22,4 @@ const App = props => {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    bestScoreObj: state.nonHierarchalReducer.bestScore,
-  };
-}
-
-export default connect(mapStateToProps, null)(App);
+export default App;
