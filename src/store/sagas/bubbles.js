@@ -1,16 +1,17 @@
-// import rsf from '../../firebaseConfig';
-// import { put, call } from 'redux-saga/effects';
+import rsf from '../../firebaseConfig';
+import { put, call } from 'redux-saga/effects';
 
-// export function* initBubbles() {
-//     const snapshot = yield call(rsf.firestore.getCollection, 'gift_');
-//     let bubbles;
-//     snapshot.forEach(bubble => {
-//         bubbles = {
-//           ...bubbles,
-//           bubble,
-//         }
-//     });
-  
-//     console.log(bubbles);
-//     // yield put(gotUsers(users));
-// }
+import * as actions from "../actions";
+
+export function* initBubbles(action) {
+  const collection = yield call(rsf.firestore.getCollection, 'gift_bubbles');
+
+  const scores = collection.docs.map(doc => {
+    return {
+      user: doc.id,
+      score: doc.data().amount
+    }    
+  });
+
+  yield put(actions.initBubbles(scores))
+}

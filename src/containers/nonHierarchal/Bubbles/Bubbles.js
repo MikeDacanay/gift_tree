@@ -5,45 +5,12 @@ import { connect } from 'react-redux';
 
 import SubHead from '../../../components/SubHead/SubHead';
 import Sections from '../../../components/Sections/Sections';
+import * as actions from '../../../store/actions/index';
 
 import './Bubbles.scss';
 
-// START FIREBASE FOR BUBBLES
-// var firebaseConfig = {
-//     apiKey: "AIzaSyBRsfUHhRK6N4-yaQ0X-XL-pvZtE7TJCVs",
-//     authDomain: "gift-tree-bubbles.firebaseapp.com",
-//     projectId: "gift-tree-bubbles",
-//     storageBucket: "gift-tree-bubbles.appspot.com",
-//     messagingSenderId: "371566937572",
-//     appId: "1:371566937572:web:1b7cca981777d27b0833f1",
-//     measurementId: "G-L6NHT00RGT"
-// };
-
-// //** Initialize Firebase
-// firebase.initializeApp(firebaseConfig);
-
-// const db = firebase.firestore();
-// const settings = { timestampsInSnapshots: true,};
-// db.settings(settings);
-
-// db.collection('gift_bubbles').onSnapshot(res => {
-
-//     res.docChanges().forEach(change => {
-//         const doc = {
-//             ...change.doc.data(),
-//             id: change.doc.id
-//         }
-        
-//         console.log(doc);
-//     });
-//     // console.log(data);
-// });
-
-// END FIREBASE FOR BUBBLES
-
-
 const Bubbles = props => {
-    console.log(props.bubblesScores);
+    // console.log(props.bubblesScores);
 
     const form = (
         <form action="">
@@ -54,19 +21,26 @@ const Bubbles = props => {
             <div className="Bubbles__txtfield--container">
                 <label htmlFor="Dollar__amount">$$$ Amount</label>                
                 <input name='Dollar__amount' type="text"/>
-            </div>            
+            </div>                        
             <input type="submit"/>
         </form>
     );  
 
     const Bubbles = (
         <div className="Bubbles__container">
-            
+            {props.bubblesScores.map((bubble, i) => {
+                return (
+                    <div className="" key={`${bubble.user}`}>
+                        {bubble.user}: {bubble.score}
+                    </div>                    
+                )
+            })}
         </div>
     );
 
     return (
         <div className="Bubbles">
+                        <button onClick={props.onTest}>TEST</button>
             <SubHead>This is SUBHEAD Bubbles</SubHead>
             <Sections
                 left={form}
@@ -77,12 +51,14 @@ const Bubbles = props => {
 }
 
 const mapStateToProps = state => {
-    // return {
-    //     bubbles: state.
-    // };
     return {
-        bubblesScores: state.bubblesReducer,
+        bubblesScores: state.bubblesReducer.scores,
     };
 }
 
-export default connect(mapStateToProps, null)(Bubbles);
+const mapDispatchToProps = dispatch => {
+    return {
+        onTest: () => dispatch(actions.test()),
+    }
+} 
+export default connect(mapStateToProps, mapDispatchToProps)(Bubbles);

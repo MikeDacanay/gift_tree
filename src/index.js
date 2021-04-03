@@ -6,7 +6,7 @@ import App from './App';
 import createSagaMiddleware from "redux-saga";
 
 import bubblesReducer from './store/reducers/bubbles';
-// import { watchBubblesPopulator } from './store/sagas';
+import { watchBubblesPopulator } from './store/sagas';
 
 import './App.scss';
 
@@ -19,14 +19,14 @@ const composeEnhancers =
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     : null || compose;
 
-// const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   rootReducer,
-  composeEnhancers(),
+  composeEnhancers(applyMiddleware(sagaMiddleware)),
 )
 
-// sagaMiddleware.run(watchBubblesPopulator);
+sagaMiddleware.run(watchBubblesPopulator);
 
 ReactDOM.render(
   <Provider store={store}>
