@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Header from './hoc/Layout/Header/Header';
+
 import Main from './hoc/Layout/Main/Main';
 import Footer from './hoc/Layout/Footer/Footer';
-
-import Bubbles from './containers/nonHierarchal/Bubbles/Bubbles';
+import BubblesContainer from './containers/nonHierarchal/BubblesContainer/BubblesContainer';
 
 import './App.scss';
 
@@ -15,7 +15,7 @@ const App = props => {
         This is Important
       </Header>
       <Main>
-        <Bubbles/>
+        <BubblesContainer/>
       </Main>
       <Footer/>
     </React.Fragment> 

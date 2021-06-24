@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { connect } from 'react-redux';
@@ -9,15 +9,29 @@ import * as actions from '../../../store/actions/index';
 
 import './Bubbles.scss';
 
-const Bubbles = props => {
-    // console.log(props.bubblesScores);
+const BubblesContainer = props => {
+
+    useEffect(() => {
+        props.sagaInitBubbles();
+
+        // console.log('hehehehe');
+    }, [])
+
+    console.log(props.bubblesScores);
+
+    const bubbleFormSubmitHandlr = (e) => {
+        e.preventDefault();
+        props.sagaAddBubble(e.target[0].value);        
+    };
 
     const form = (
-        <form action="">
-            <div className="Bubbles__txtfield--container">
+        <form action="" onSubmit={(e) => {
+            bubbleFormSubmitHandlr(e);
+        }}>
+            {/* <div className="Bubbles__txtfield--container">
                 <label htmlFor="User_number">User Number</label>                
                 <input name='User_number' type="text"/>
-            </div>            
+            </div>             */}
             <div className="Bubbles__txtfield--container">
                 <label htmlFor="Dollar__amount">$$$ Amount</label>                
                 <input name='Dollar__amount' type="text"/>
@@ -40,7 +54,7 @@ const Bubbles = props => {
 
     return (
         <div className="Bubbles">
-                        <button onClick={props.onTest}>TEST</button>
+            {/* <button onClick={props.sagaInitBubbles}>TEST</button> */}
             <SubHead>This is SUBHEAD Bubbles</SubHead>
             <Sections
                 left={form}
@@ -58,7 +72,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onTest: () => dispatch(actions.test()),
+        sagaInitBubbles: () => dispatch(actions.sagaInitBubbles()),
+        sagaAddBubble: (amt) => dispatch(actions.sagaAddBubble(amt)),
     }
 } 
-export default connect(mapStateToProps, mapDispatchToProps)(Bubbles);
+export default connect(mapStateToProps, mapDispatchToProps)(BubblesContainer);

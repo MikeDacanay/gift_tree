@@ -1,3 +1,6 @@
-export const INIT_BUBBLES1_SCORES = 'INIT_BUBBLES1_SCORES';
+export const INIT_BUBBLES_SCORES = 'INIT_BUBBLES_SCORES';
+export const INIT_BUBBLES = 'INIT_BUBBLES';
+export const ADD_BUBBLE = 'ADD_BUBBLE';
 
-export const TEST = 'TEST';
+export const SAGA_INIT_BUBBLES = 'SAGA_INIT_BUBBLES';
+export const SAGA_ADD_BUBBLE = 'SAGA_ADD_BUBBLE'; 

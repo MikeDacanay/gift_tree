@@ -1,4 +1,6 @@
 export {
-    test,
-    initBubbles
+    sagaInitBubbles,
+    sagaAddBubble,
+    initBubbles,
+    addBubble,
 } from './bubbles';

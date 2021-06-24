@@ -3,27 +3,38 @@ import  { updateObject } from '../utility';
 
 const initialState = {
     scores: [
-        {user: '001', score: 300000},
-        {user: '002', score:400000},
+        // {user: '001', score: 300000},
+        // {user: '002', score:400000},
     ],
     // bestScore: {1: 300},
 }
 
-const init_bubbles1_scores = (state = initialState, action) => {
-    const newScores = [...action.docs];
-
-    console.log(newScores);
+const init_bubbles = (state = initialState, action) => {
+    
+    const newBubbles = [...action.docs];
 
     return updateObject(state, {
-        scores: newScores,
+        scores: newBubbles,
     });
+}
 
-    // return state;
+const add_bubble = (state = initialState, action) => {
+    // const amt = action.amt;
+    const newBubbles = [...state.scores];
+
+    newBubbles.push({user:'temp', score: action.amt});
+
+    return updateObject(state, {
+        scores: newBubbles,
+    });
 }
 
 const reducer = (state = initialState, action) => {
-    if(action.type === actionTypes.INIT_BUBBLES1_SCORES){
-        return init_bubbles1_scores(state, action);
+    if(action.type === actionTypes.INIT_BUBBLES){
+        return init_bubbles(state, action);
+    }
+    if(action.type === actionTypes.ADD_BUBBLE){
+        return add_bubble(state, action);
     }
     
     return state;
