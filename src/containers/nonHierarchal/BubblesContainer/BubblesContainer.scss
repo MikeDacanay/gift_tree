@@ -1,0 +1,14 @@
+.Bubbles{
+    &__form{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.Bubble{
+    display: flex;
+    
+    &__delete{
+        cursor: pointer;
+    }
+}

@@ -1,3 +1,4 @@
+import { uuid } from 'uuidv4';
 import rsf from '../../firebaseConfig';
 import { put, call } from 'redux-saga/effects';
 
@@ -5,7 +6,7 @@ import * as actions from "../actions";
 
 export function* initBubbles(action) {
   
-  const collection = yield call(rsf.firestore.getCollection, 'gift_bubbles');
+  const collection = yield call(rsf.firestore.getCollection, 'bubbles');
 
   const bubbles = collection.docs.map(doc => {
     return {
@@ -20,10 +21,25 @@ export function* initBubbles(action) {
 export function* addBubble(action) {
 
   const amt = Number(action.amt);
+  const id = uuid()+'x';
 
-  yield put(actions.addBubble(amt));
+  yield put(actions.addBubble(amt, id));
 
-  yield call(rsf.firestore.addDocument, 'gift_bubbles', {
-    amount: Number(amt),
-  });  
+  // yield call(rsf.firestore.addDocument, 'gift_bubbles', {
+  //   amount: amt,
+  // });  
+  yield call(
+    rsf.firestore.setDocument,
+    `bubbles/${id}`,
+    { amount: amt }
+  );
+}
+
+export function* deleteBubble(action) {
+  yield put(actions.deleteBubble(action.rdcIdx));
+
+  yield call(
+    rsf.firestore.deleteDocument, 
+    `bubbles/${action.usrId}`
+  )
 }

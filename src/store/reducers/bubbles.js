@@ -22,7 +22,17 @@ const add_bubble = (state = initialState, action) => {
     // const amt = action.amt;
     const newBubbles = [...state.scores];
 
-    newBubbles.push({user:'temp', score: action.amt});
+    newBubbles.push({user: action.id, score: action.amt});
+
+    return updateObject(state, {
+        scores: newBubbles,
+    });
+}
+
+const delete_bubble = (state = initialState, action) => {
+    const newBubbles = [...state.scores];
+
+    newBubbles.splice(action.rdcIdx, 1); 
 
     return updateObject(state, {
         scores: newBubbles,
@@ -35,6 +45,9 @@ const reducer = (state = initialState, action) => {
     }
     if(action.type === actionTypes.ADD_BUBBLE){
         return add_bubble(state, action);
+    }
+    if(action.type === actionTypes.DELETE_BUBBLE){
+        return delete_bubble(state, action);
     }
     
     return state;
