@@ -7,8 +7,7 @@ import './BubbleForm.scss';
 
 const BubbleForm = props => {
     const bubbleFormSubmitHandlr = (e) => {
-        e.preventDefault();
-        console.log('submit');
+        e.preventDefault();        
         props.sagaAddBubble(e.target[0].value);        
     };
 
@@ -18,7 +17,7 @@ const BubbleForm = props => {
             onSubmit={(e)=>bubbleFormSubmitHandlr(e)}>
             <div className="Bubbles__txtfield--container">
                 <label htmlFor="Dollar__amount">$$$ Amount</label>                
-                <input name='Dollar__amount' type="text"/>
+                <input className='BubbleForm__input--txt' name='Dollar__amount' type="text"/>
             </div>                        
             <input type="submit"/>
         </form>

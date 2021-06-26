@@ -1,12 +1,5 @@
 import * as actionTypes from './actionTypes';
 
-// export const changeBubbles = (docs) => {
-//     return {
-//         type: actionTypes.CHANGE_BUBBLES_SCORES,
-//         docs: docs,
-//     };
-// };
-
 export const sagaInitBubbles = () => {
     return {
         type: actionTypes.SAGA_INIT_BUBBLES,
@@ -28,6 +21,15 @@ export const sagaDeleteBubble = (usrId, rdcIdx) => {
     };
 }
 
+export const sagaUpdateBubble = (usrId, idx, val) => {
+    return {
+        type: actionTypes.SAGA_UPDATE_BUBBLE,
+        usrId: usrId,
+        val: val,
+        idx: idx
+    }
+}
+
 export const initBubbles = (docs) => {
     return {
         type: actionTypes.INIT_BUBBLES,
@@ -47,5 +49,13 @@ export const deleteBubble = (rdcIdx) => {
     return {
         type: actionTypes.DELETE_BUBBLE,
         rdcIdx: rdcIdx, 
+    }
+}
+
+export const updateBubble = (idx, val) => {
+    return {
+        type: actionTypes.UPDATE_BUBBLE,
+        idx: idx,
+        val: val,
     }
 }

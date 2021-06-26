@@ -9,9 +9,9 @@ const Bubble = props => {
     const bubble = props.bbl;
     const idx = props.idx;
 
-    const bubbleDeleteHandlr = (userId, bubbleRdcIdx) => {
-        props.sagaDeleteBubble(userId, bubbleRdcIdx);
-    }
+    const bubbleDeleteHandlr = (userId, bubbleRdcIdx) => props.sagaDeleteBubble(userId, bubbleRdcIdx);
+
+    const bubbleUpdateHandlr = (userId, idx, e) => props.sagaUpdateBubble(userId, idx, Number(e.target.value));
 
     return (
         <div className="Bubble" 
@@ -23,6 +23,7 @@ const Bubble = props => {
                 onClick={()=>bubbleDeleteHandlr(bubble.user, idx)}>
                 Delete
             </button>
+            <input className='Bubble__input--txt' type="text" onChange={(e)=>bubbleUpdateHandlr(bubble.user, idx,e)}/>
         </div>
     )
 }
@@ -30,6 +31,7 @@ const Bubble = props => {
 const mapDispatchToProps = dispatch => {
     return {
         sagaDeleteBubble: (userId, bubbleRdcIdx) => dispatch(actions.sagaDeleteBubble(userId, bubbleRdcIdx)),
+        sagaUpdateBubble: (userId, idx, val) => dispatch(actions.sagaUpdateBubble(userId, idx, val)),
     }
 }
 

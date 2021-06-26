@@ -43,3 +43,12 @@ export function* deleteBubble(action) {
     `bubbles/${action.usrId}`
   )
 }
+
+export function* updateBubble(action){
+  const idx = action.idx;
+  const val = action.val
+
+  yield put(actions.updateBubble(idx, val));
+
+  
+}

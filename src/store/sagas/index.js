@@ -6,10 +6,12 @@ import {
     initBubbles,
     addBubble,
     deleteBubble, 
+    updateBubble,
 } from './sagabubbles';
 
 export function* watchBubblesPopulator() {    
     yield takeEvery(actionTypes.SAGA_INIT_BUBBLES, initBubbles);
     yield takeEvery(actionTypes.SAGA_ADD_BUBBLE, addBubble);
     yield takeEvery(actionTypes.SAGA_DELETE_BUBBLE, deleteBubble);
+    yield takeEvery(actionTypes.SAGA_UPDATE_BUBBLE, updateBubble);
 }

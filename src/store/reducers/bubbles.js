@@ -39,6 +39,18 @@ const delete_bubble = (state = initialState, action) => {
     });
 }
 
+const update_bubble = (state = initialState, action) => {
+    const newBubbles = [...state.scores];
+    const idx = action.idx;
+    const val = action.val;
+
+    newBubbles[idx].score = val;
+
+    return updateObject(state, {
+        scores: newBubbles,
+    })    
+}
+
 const reducer = (state = initialState, action) => {
     if(action.type === actionTypes.INIT_BUBBLES){
         return init_bubbles(state, action);
@@ -48,6 +60,9 @@ const reducer = (state = initialState, action) => {
     }
     if(action.type === actionTypes.DELETE_BUBBLE){
         return delete_bubble(state, action);
+    }
+    if(action.type === actionTypes.UPDATE_BUBBLE){
+        return update_bubble(state, action);
     }
     
     return state;
