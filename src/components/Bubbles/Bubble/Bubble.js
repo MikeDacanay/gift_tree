@@ -6,24 +6,27 @@ import * as actions from '../../../store/actions/index';
 import './Bubble.scss';
 
 const Bubble = props => {
-    const bubble = props.bbl;
-    const idx = props.idx;
+    // const bubble = props.bbl;
+    const idx = props.idx;   
 
     const bubbleDeleteHandlr = (userId, bubbleRdcIdx) => props.sagaDeleteBubble(userId, bubbleRdcIdx);
 
-    const bubbleUpdateHandlr = (userId, idx, e) => props.sagaUpdateBubble(userId, idx, Number(e.target.value));
+    const bubbleUpdateHandlr = (userId, idx, e) => {
+        // e.stopPropagation();
+        props.sagaUpdateBubble(userId, idx, Number(e.target.value))
+    };
 
     return (
         <div className="Bubble" 
             >
             <div className="Bubble__text">
-                {bubble.user}: {bubble.score}
+                {props.user}: {props.score}
             </div>
             <button className="Bubble__delete"
-                onClick={()=>bubbleDeleteHandlr(bubble.user, idx)}>
+                onClick={()=>bubbleDeleteHandlr(props.user, idx)}>
                 Delete
             </button>
-            <input className='Bubble__input--txt' type="text" onChange={(e)=>bubbleUpdateHandlr(bubble.user, idx,e)}/>
+            <input className='Bubble__input--txt' type="text" onChange={(e)=>bubbleUpdateHandlr(props.user, idx,e)}/>
         </div>
     )
 }

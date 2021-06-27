@@ -6,19 +6,25 @@ import Bubble from './Bubble/Bubble';
 import './Bubbles.scss';
 
 const Bubbles = props => {
-    return (
+
+    const retThis = (
         <div className="Bubbles__container">
             {props.bubbleScores.map((b, i)=> {
                 return (
                     <Bubble
-                        bbl={b}
+                        score={b.score}
                         idx={i}
                         key={b.user}
+                        user={b.user}
                     />
                 )
             })}
         </div>
-    )
+    );
+
+
+
+    return retThis;
 }
 
 const mapStateToProps = state => {

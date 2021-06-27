@@ -46,9 +46,17 @@ export function* deleteBubble(action) {
 
 export function* updateBubble(action){
   const idx = action.idx;
-  const val = action.val
+  const val = Number(action.val);
+  const usrId = action.usrId;
+
+  console.log(action);
 
   yield put(actions.updateBubble(idx, val));
 
-  
+  yield call(
+    rsf.firestore.updateDocument,
+    `bubbles/${usrId}`,
+    'amount',
+    val
+  )
 }
