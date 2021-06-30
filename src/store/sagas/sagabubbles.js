@@ -11,7 +11,7 @@ export function* initBubbles(action) {
   const bubbles = collection.docs.map(doc => {
     return {
       user: doc.id,
-      score: doc.data().amount
+      r: doc.data().amount
     }    
   });
 

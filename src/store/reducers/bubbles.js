@@ -2,10 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 import  { updateObject } from '../utility';
 
 const initialState = {
-    scores: [
-        // {user: '001', score: 300000},
-        // {user: '002', score:400000},
-    ],
+    scores: '',
     // bestScore: {1: 300},
 }
 
